@@ -47,7 +47,8 @@ export class Login extends Component<AcceptedProps, UserState> {
                 })
                 .then((data) => {
                     console.log(data);
-                    this.props.updateToken(data.Token);
+                    console.log(data.sessionToken)
+                    this.props.updateToken(data.sessionToken);
                     this.props.updateRole(data.user.isAdmin);
                     console.log('User successfully logged in')
                 })
