@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import APIURL from '../helpers/environment';
 // import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import { Button, FormControl, TextField } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
+import FormControl from '@material-ui/core/FormControl';
 // import { YogaPose } from '../Interfaces';
 
 type AcceptedProps = {
