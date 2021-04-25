@@ -6,7 +6,8 @@ import FormControl from '@material-ui/core/FormControl';
 // import { YogaPose } from '../Interfaces';
 
 type AcceptedProps = {
-    updateToken: (newToken: string) => void;  // string | null 
+    // updateToken: (newToken: string) => void;  // string | null 
+    sessionToken: any
     // updateRole: (newUserIsAdmin: string) => void;
     // YogaPose: [];
 };
@@ -33,28 +34,28 @@ export class CreatePose extends Component<AcceptedProps, PoseDataState> {
 
     handleSubmit = (e: any) => {
 
-        if (this.token) {
+        if (this.props.sessionToken) {
             e.preventDefault();
-            // fetch("http://localhost:3000/user/login", {
+            // fetch("http://localhost:3000/pose/create", {
             fetch(`${APIURL}/pose/create`, {
                 method: 'POST',
                 headers: new Headers({
                     'Content-Type': 'application/json',
-                    Authorization: this.token, 
+                    Authorization: this.props.sessionToken, 
                 }),
                 body: JSON.stringify({
-                    pose: {
+                    // pose: {
                         id: this.state.id,
                         nameEng: this.state.nameEng,
                         nameSans: this.state.nameSans,
                         imgUrl: this.state.imgUrl,
                         poseCat: this.state.poseCat,
-                    }
+                    // }
                 }),
             })
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log(data);
+                    console.log(data, this.props.sessionToken, this.token);
                 })
                 .catch((err) => console.log(err));
         }

@@ -36,7 +36,7 @@ export default class App extends Component<{}, sessionState> {
   updateToken = (newToken: string) => {
     localStorage.setItem('token', newToken); //STORING TOKEN 
     this.setState({ sessionToken: newToken });
-    // console.log(newToken); 
+    console.log(newToken); 
   };
 
 
@@ -75,6 +75,7 @@ export default class App extends Component<{}, sessionState> {
         updateToken={this.updateToken}
         updateRole={this.updateRole}
         clearToken={this.clearToken}
+        sessionToken={this.state.sessionToken}
         />}
         </Router>
 

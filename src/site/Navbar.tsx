@@ -8,6 +8,7 @@ type AcceptedProps = {
   updateToken: (newToken: string) => void;
   updateRole: (newUserIsAdmin: string) => void;
   clearToken: ()=> void;
+  sessionToken: any;
   };
   
   export class Navbar extends Component<AcceptedProps, {}> {
@@ -55,7 +56,7 @@ type AcceptedProps = {
               </Button>
               {console.log("Nav Footer")}
             </Toolbar>
-            <SwitchController updateToken={this.props.updateToken} updateUserRole={this.props.updateRole} />
+            <SwitchController updateToken={this.props.updateToken} updateUserRole={this.props.updateRole} sessionToken={this.props.sessionToken} />
           </div>
         );
       }

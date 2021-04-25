@@ -7,6 +7,7 @@ import CreatePose from "../components/CreatePose";
 type ControllerProps = {
     updateToken: (newToken: string) => void; // currently a function to update token, should be token itself IN CREATE POSE for auth 
     updateUserRole: (newUserRole: string) => void;
+    sessionToken: any;
     // nameEng: string;
     // nameSans: string;
     // imgUrl: string;
@@ -19,7 +20,7 @@ type ControllerProps = {
 };
 
 const SwitchController: FC<ControllerProps> = (props) => {
-    console.log('switchController: ', props.updateToken);
+    console.log('switchController: ', props.sessionToken);
 
     return (
         <div>
@@ -31,8 +32,8 @@ const SwitchController: FC<ControllerProps> = (props) => {
                     ></Auth>
                 </Route>
                 <Route exact path='/components/CreatePose'>
-                    <CreatePose updateToken={props.updateToken} />
-                    </Route>
+                    <CreatePose sessionToken={props.sessionToken}  />
+                </Route>
             </Switch>
         </div>
     )
