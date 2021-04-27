@@ -45,6 +45,7 @@ export class Navbar extends Component<AcceptedProps, ValueTypes> {
                                 User Home
                             </Link>
                         </Button>
+                        {/* Poses Menu */}
                         <Button style={{ margin: "1rem 3rem" }} aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
                             Poses
                         </Button>
@@ -72,6 +73,37 @@ export class Navbar extends Component<AcceptedProps, ValueTypes> {
                             <MenuItem onClick={this.handleClose}>
                                 <Link style={{ color: "#000000" }} to="/components/GetAllPoses">
                                     Get All Poses
+                                </Link>
+                            </MenuItem>
+                        </Menu>
+                        {/* Sequences Menu */}
+                        <Button style={{ margin: "1rem 3rem" }} aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
+                            Sequences
+                        </Button>
+                        <Menu
+                            id="simple-menu"
+                            anchorEl={this.state.anchorEl}
+                            keepMounted
+                            open={Boolean(this.state.anchorEl)}
+                            onClose={this.handleClose}>
+                            <MenuItem onClick={this.handleClose}>
+                                <Link style={{ color: "#000000" }} to="/components/CreateSequence">
+                                    Create a Sequence
+                                </Link>
+                            </MenuItem>
+                            <MenuItem onClick={this.handleClose}>
+                                <Link style={{ color: "#000000" }} to="/components/EditSequence">
+                                    Edit a Sequence
+                                </Link>
+                            </MenuItem>
+                            <MenuItem onClick={this.handleClose}>
+                                <Link style={{ color: "#000000" }} to="/components/DeleteSequence">
+                                    Delete a Sequence
+                                </Link>
+                            </MenuItem>
+                            <MenuItem onClick={this.handleClose}>
+                                <Link style={{ color: "#000000" }} to="/components/GetAllSequences">
+                                    Get All Sequence
                                 </Link>
                             </MenuItem>
                         </Menu>
