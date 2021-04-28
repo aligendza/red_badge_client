@@ -77,7 +77,7 @@ export class Navbar extends Component<AcceptedProps, ValueTypes> {
                             </MenuItem>
                         </Menu>
                         {/* Sequences Menu */}
-                        <Button style={{ margin: "1rem 3rem" }} aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
+                        {/* <Button style={{ margin: "1rem 3rem" }} aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
                             Sequences
                         </Button>
                         <Menu
@@ -103,7 +103,7 @@ export class Navbar extends Component<AcceptedProps, ValueTypes> {
                             </MenuItem>
                             <MenuItem onClick={this.handleClose}>
                                 <Link style={{ color: "#000000" }} to="/components/GetAllSequences">
-                                    Get All Sequence
+                                    Get All Sequences
                                 </Link>
                             </MenuItem>
                         </Menu>
@@ -113,7 +113,7 @@ export class Navbar extends Component<AcceptedProps, ValueTypes> {
                             <Link style={{ color: "#000000" }} to="/home">
                                 Logout
                             </Link>
-                        </Button>
+                        </Button> */}
                     </Toolbar>
                     <SwitchController updateToken={this.props.updateToken} updateUserRole={this.props.updateRole} sessionToken={this.props.sessionToken} />
                 </div>

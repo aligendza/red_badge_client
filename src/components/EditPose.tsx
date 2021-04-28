@@ -17,7 +17,7 @@ type PoseDataState = {
     imgUrl: string;
     poseCat: string;
 }
-export class createPose extends Component<AcceptedProps, PoseDataState> {
+export class editPose extends Component<AcceptedProps, PoseDataState> {
     constructor(props: AcceptedProps) {
         super(props);
         this.state = {
@@ -33,8 +33,8 @@ export class createPose extends Component<AcceptedProps, PoseDataState> {
         if (this.props.Token) {
             e.preventDefault();
             // fetch("http://localhost:3000/user/login", {
-            fetch(`${APIURL}/pose/create`, {
-                method: 'POST',
+            fetch(`${APIURL}/update/:entryId`, {
+                method: 'PUT',
                 headers: new Headers({
                     'Content-Type': 'application/json',
                     Authorization: this.props.Token,
@@ -72,7 +72,7 @@ export class createPose extends Component<AcceptedProps, PoseDataState> {
     render() {
         return (
             <div>
-                <h2>Create a pose</h2>
+                <h2>Edit a pose</h2>
                 <FormControl>
                     <TextField
                         id="standard-basic"
@@ -107,7 +107,7 @@ export class createPose extends Component<AcceptedProps, PoseDataState> {
                 </FormControl>
                 <br />
                 <Button variant='contained' onClick={this.handleSubmit}>
-                    Create
+                    Edit
                     </Button>
 
             </div>

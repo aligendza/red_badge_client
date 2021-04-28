@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Switch, Route } from "react-router-dom";
 import Auth from '../auth/Auth';
 import CreatePose from "../components/CreatePose";
+import GetAllPoses from '../components/GetAllPoses';
 
 
 type ControllerProps = {
@@ -33,6 +34,9 @@ const SwitchController: FC<ControllerProps> = (props) => {
                 </Route>
                 <Route exact path='/components/CreatePose'>
                     <CreatePose sessionToken={props.sessionToken}  />
+                </Route>
+                <Route exact path='/components/GetAllPoses'>
+                    <GetAllPoses sessionToken={props.sessionToken}  />
                 </Route>
             </Switch>
         </div>
