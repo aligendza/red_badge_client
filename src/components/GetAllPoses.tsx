@@ -5,15 +5,6 @@ import { Button } from '@material-ui/core';
 // import { Button, TextField } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 // import { YogaPose } from '../Interfaces';
-// import { makeStyles } from '@material-ui/core/styles';
-// import Paper from '@material-ui/core/Paper';
-// import Table from '@material-ui/core/Table';
-// import TableBody from '@material-ui/core/TableBody';
-// import TableCell from '@material-ui/core/TableCell';
-// import TableContainer from '@material-ui/core/TableContainer';
-// import TableHead from '@material-ui/core/TableHead';
-// import TablePagination from '@material-ui/core/TablePagination';
-// import TableRow from '@material-ui/core/TableRow';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -41,17 +32,6 @@ type styleState= {
     style: any,
     index: any
 }
-
-// const useStyles = makeStyles((theme: Theme) =>
-//     createStyles({
-//         root: {
-//             width: '100%',
-//             height: 400,
-//             maxWidth: 300,
-//             backgroundColor: theme.palette.background.paper,
-//         },
-//     }),
-// );
 
 class renderRow extends Component<ListChildComponentProps, styleState> {
     constructor(props: ListChildComponentProps) {
@@ -97,15 +77,7 @@ export default class GetAllPoses extends Component<AcceptedProps, PoseDataState>
                     'Content-Type': 'application/json',
                     Authorization: this.props.sessionToken,
                 }),
-                // body: JSON.stringify({
-                    // pose: {
-                    // id: this.state.id,
-                    // nameEng: this.state.nameEng,
-                    // nameSans: this.state.nameSans,
-                    // imgUrl: this.state.imgUrl,
-                    // poseCat: this.state.poseCat,
-                    // }
-                // }),
+
             })
                 .then((res) => res.json())
                 .then((data) => {
