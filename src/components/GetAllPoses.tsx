@@ -18,6 +18,8 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
+import CardItemDisplay from './PoseCard'
+import ViewPose from "./ViewPoses"
 
 type AcceptedProps = {
     // updateToken: (newToken: string) => void;  // string | null 
@@ -32,6 +34,7 @@ type PoseDataState = {
     nameSans: string;
     imgUrl: string;
     poseCat: string;
+    poses: []
 }
 
 type styleState= {
@@ -77,6 +80,7 @@ export default class GetAllPoses extends Component<AcceptedProps, PoseDataState>
             nameSans: '',
             imgUrl: '',
             poseCat: '',
+            poses: []
         }
     };
     token: string | null = localStorage.getItem("token");
@@ -106,6 +110,7 @@ export default class GetAllPoses extends Component<AcceptedProps, PoseDataState>
                 .then((res) => res.json())
                 .then((data) => {
                     console.log(data, this.props.sessionToken, this.token);
+                    this.setState({poses: data})
                 })
                 .catch((err) => console.log(err));
         }
@@ -121,13 +126,14 @@ export default class GetAllPoses extends Component<AcceptedProps, PoseDataState>
             // className={this.classes.root}>
                 >
                 <h2>All My Poses</h2>
-                <FixedSizeList height={400} width={300} itemSize={46} itemCount={200}>
+                <ViewPose sessionToken={this.props.sessionToken} poses={this.state.poses} />
+                {/* <FixedSizeList height={400} width={300} itemSize={46} itemCount={200}>
                     {renderRow}
                 </FixedSizeList>
                 <br />
                 <Button variant='contained' onClick={this.handleSubmit}>
                     Get All My Poses
-                    </Button>
+                    </Button> */}
 
             </div>
         )
