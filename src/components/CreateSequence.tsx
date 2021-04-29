@@ -25,7 +25,7 @@ type SequenceDataState = {
     // owner: number,
     title: string,
     posesInSequence: any,
-    sequenceId: number,
+    // sequenceId: number,
     poseId: number
 }
 
@@ -81,7 +81,7 @@ export class CreateSequence extends Component<AcceptedProps, SequenceDataState> 
                         label="Sequence Name"
                         type="text"
                         onChange={(e) => {
-                            this.setState({ nameEng: e.target.value });
+                            this.setState({ title: e.target.value });
                         }}
                     />
                 </FormControl>
