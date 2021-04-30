@@ -39,6 +39,10 @@ type styleState = {
   index: any;
 };
 
+type AllSequencesData = {
+  sequenceId: number;
+};
+
 // const useStyles = makeStyles((theme: Theme) =>
 //     createStyles({
 //         root: {
@@ -68,18 +72,20 @@ class renderRow extends Component<ListChildComponentProps, styleState> {
   }
 }
 
-export default class GetAllPoses extends Component<
+export default class GetAllSequences extends Component<
   AcceptedProps,
-  PoseDataState
+  //   PoseDataState
+  AllSequencesData
 > {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
-      id: 0,
-      nameEng: "",
-      nameSans: "",
-      imgUrl: "",
-      poseCat: "",
+      sequenceId: 0,
+      //   id: 0,
+      //   nameEng: "",
+      //   nameSans: "",
+      //   imgUrl: "",
+      //   poseCat: "",
     };
   }
   token: string | null = localStorage.getItem("token");
@@ -91,14 +97,14 @@ export default class GetAllPoses extends Component<
       console.log(
         APIURL,
         this.props.sessionToken,
-        this.token,
-        this.state.id,
-        this.state.nameEng,
-        this.state.nameSans,
-        this.state.imgUrl,
-        this.state.poseCat
+        this.token
+        // this.state.id,
+        // this.state.nameEng,
+        // this.state.nameSans,
+        // this.state.imgUrl,
+        // this.state.poseCat
       );
-      fetch(`${APIURL}/pose/`, {
+      fetch(`${APIURL}/sequence/`, {
         method: "GET",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -139,6 +145,13 @@ export default class GetAllPoses extends Component<
         <Button variant="contained" onClick={this.handleSubmit}>
           Get All My Poses
         </Button>
+        {/* {this.props.poses.map((pose, index) => (
+          <PosesCard
+            sessionToken={this.props.sessionToken}
+            pose={pose}
+            index={index}
+          />
+        ))} */}
       </div>
     );
   }
