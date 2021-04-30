@@ -28,27 +28,32 @@ type styleState = {
 };
 
 type AllSequencesData = {
-  sequenceId: number;
-  title: string;
+  sequences: any;
+  //   title: string;
+  //   style: any;
 };
 
-class renderRow extends Component<ListChildComponentProps, styleState> {
-  constructor(props: ListChildComponentProps) {
-    super(props);
-    this.state = {
-      index: this.props.index,
-      style: this.props.style,
-    };
-  }
+// class renderRow extends Component<ListChildComponentProps, AllSequencesData> {
+//   constructor(props: ListChildComponentProps) {
+//     super(props);
+//     this.state = {
+//       sequenceId: this.props.index,
+//       //   style: this.props.style,
+//       //   title: this.props.title,
+//     };
+//   }
 
-  render() {
-    return (
-      <ListItem button style={this.state.style} key={this.state.index}>
-        <ListItemText primary={`Item ${this.state.index + 1}`} />
-      </ListItem>
-    );
-  }
-}
+//   render() {
+//     return (
+//       <ListItem button style={this.state.style} key={this.state.sequenceId}>
+//         <ListItemText primary={`Item ${this.state.sequenceId + 1}`} />
+//         <Button variant="contained" onClick={this.handleSubmit}>
+//           Add Poses to Sequence
+//         </Button>
+//       </ListItem>
+//     );
+//   }
+// }
 
 export default class GetAllSequences extends Component<
   AcceptedProps,
@@ -58,77 +63,56 @@ export default class GetAllSequences extends Component<
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
-      sequenceId: 0,
-      title: "",
+      sequences: [],
+      //   title: "",
     };
   }
   token: string | null = localStorage.getItem("token");
 
-  handleSubmit = () => {
+  getAllSequences = () => {
     if (this.props.sessionToken) {
       // e.preventDefault();
       // fetch("http://localhost:3000/pose/create", {
-      console.log(
-        APIURL,
-        this.props.sessionToken,
-        this.token
-        // this.state.id,
-        // this.state.nameEng,
-        // this.state.nameSans,
-        // this.state.imgUrl,
-        // this.state.poseCat
-      );
+      console.log(APIURL, this.props.sessionToken, this.token);
       fetch(`${APIURL}/sequence/`, {
         method: "GET",
         headers: new Headers({
           "Content-Type": "application/json",
           Authorization: this.props.sessionToken,
         }),
-        // body: JSON.stringify({
-        // pose: {
-        // id: this.state.id,
-        // nameEng: this.state.nameEng,
-        // nameSans: this.state.nameSans,
-        // imgUrl: this.state.imgUrl,
-        // poseCat: this.state.poseCat,
-        // }
-        // }),
       })
         .then((res) => res.json())
         .then((data) => {
           console.log(data, this.props.sessionToken, this.token);
+          this.setState({ sequences: data });
         })
         .catch((err) => console.log(err));
     }
   };
   // classes = useStyles();
   componentDidMount() {
-    this.handleSubmit();
+    this.getAllSequences();
   }
 
   render() {
     return (
-      <div
-      // className={this.classes.root}>
-      >
+      <div>
         <h2>All My Sequences</h2>
-        <FixedSizeList height={400} width={300} itemSize={46} itemCount={200}>
-          {renderRow}
-        </FixedSizeList>
+        {this.state.sequences.map((sequence: any) => {
+          <div>
+            <h1>{sequence.title}</h1>
+            <Button variant="contained">
+              {/* onClick={this.} */}
+              Add Poses to Sequence
+            </Button>
+          </div>;
+        })}
+
         <br />
-        <Button variant="contained" onClick={this.handleSubmit}>
-          Add Poses to Sequence
-        </Button>
-        {/* {this.props.poses.map((pose, index) => (
-          <PosesCard
-            sessionToken={this.props.sessionToken}
-            pose={pose}
-            index={index}
-          />
+        {/* {this.props.sequ.map((pose, index) => (
+       title: string
         ))} */}
       </div>
     );
   }
 }
-
-// npm install --legacy-peer-deps
