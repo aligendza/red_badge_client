@@ -29,6 +29,7 @@ type styleState = {
 
 type AllSequencesData = {
   sequenceId: number;
+  title: string;
 };
 
 class renderRow extends Component<ListChildComponentProps, styleState> {
@@ -58,6 +59,7 @@ export default class GetAllSequences extends Component<
     super(props);
     this.state = {
       sequenceId: 0,
+      title: "",
     };
   }
   token: string | null = localStorage.getItem("token");
