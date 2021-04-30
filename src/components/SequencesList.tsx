@@ -1,19 +1,7 @@
 import React, { Component } from "react";
 import APIURL from "../helpers/environment";
-// import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Button } from "@material-ui/core";
-// import { Button, TextField } from '@material-ui/core';
 import FormControl from "@material-ui/core/FormControl";
-// import { YogaPose } from '../Interfaces';
-// import { makeStyles } from '@material-ui/core/styles';
-// import Paper from '@material-ui/core/Paper';
-// import Table from '@material-ui/core/Table';
-// import TableBody from '@material-ui/core/TableBody';
-// import TableCell from '@material-ui/core/TableCell';
-// import TableContainer from '@material-ui/core/TableContainer';
-// import TableHead from '@material-ui/core/TableHead';
-// import TablePagination from '@material-ui/core/TablePagination';
-// import TableRow from '@material-ui/core/TableRow';
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -43,17 +31,6 @@ type AllSequencesData = {
   sequenceId: number;
 };
 
-// const useStyles = makeStyles((theme: Theme) =>
-//     createStyles({
-//         root: {
-//             width: '100%',
-//             height: 400,
-//             maxWidth: 300,
-//             backgroundColor: theme.palette.background.paper,
-//         },
-//     }),
-// );
-
 class renderRow extends Component<ListChildComponentProps, styleState> {
   constructor(props: ListChildComponentProps) {
     super(props);
@@ -81,11 +58,6 @@ export default class GetAllSequences extends Component<
     super(props);
     this.state = {
       sequenceId: 0,
-      //   id: 0,
-      //   nameEng: "",
-      //   nameSans: "",
-      //   imgUrl: "",
-      //   poseCat: "",
     };
   }
   token: string | null = localStorage.getItem("token");
@@ -137,13 +109,13 @@ export default class GetAllSequences extends Component<
       <div
       // className={this.classes.root}>
       >
-        <h2>All My Poses</h2>
+        <h2>All My Sequences</h2>
         <FixedSizeList height={400} width={300} itemSize={46} itemCount={200}>
           {renderRow}
         </FixedSizeList>
         <br />
         <Button variant="contained" onClick={this.handleSubmit}>
-          Get All My Poses
+          Add Poses to Sequence
         </Button>
         {/* {this.props.poses.map((pose, index) => (
           <PosesCard
@@ -156,19 +128,5 @@ export default class GetAllSequences extends Component<
     );
   }
 }
-// export default function VirtualizedList() {
-// const classes = useStyles();
 
-//     return (
-//       <div className={classes.root}>
-{
-  /* <FixedSizeList height={400} width={300} itemSize={46} itemCount={200}>
-    {renderRow}
-</FixedSizeList> */
-}
-//       </div>
-//     );
-//   }
-
-// export default CreatePose;
 // npm install --legacy-peer-deps
