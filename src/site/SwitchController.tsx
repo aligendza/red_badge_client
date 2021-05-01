@@ -4,7 +4,7 @@ import Auth from "../auth/Auth";
 import CreatePose from "../components/poses/CreatePose";
 import GetAllPoses from "../components/poses/GetAllPoses";
 import CreateSequenceName from "../components/sequences/CreateSequenceName";
-import AddPoseToSequence from "../components/sequences/SequencesListAddPose";
+import SequencesListAddPose from "../components/sequences/SequencesListAddPose";
 
 type ControllerProps = {
   updateToken: (newToken: string) => void; // currently a function to update token, should be token itself IN CREATE POSE for auth
@@ -43,7 +43,7 @@ const SwitchController: FC<ControllerProps> = (props) => {
           <CreateSequenceName sessionToken={props.sessionToken} />
         </Route>
         <Route exact path="/components/sequences/SequencesListAddPose">
-          <AddPoseToSequence sessionToken={props.sessionToken} />
+          <SequencesListAddPose sessionToken={props.sessionToken} />
         </Route>
       </Switch>
     </div>
