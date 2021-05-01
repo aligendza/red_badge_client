@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import PoseCard from "./notUsed/PoseCard";
-import PosesCard from "./PosesCard";
+import PoseCard from "../notUsed/PoseCard";
+import PosesCard from "../poses/PosesCard";
 
 type acceptedProps = {
   sessionToken: any;

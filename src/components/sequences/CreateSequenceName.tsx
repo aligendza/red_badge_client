@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import APIURL from "../helpers/environment";
+import APIURL from "../../helpers/environment";
 // import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Button, TextField } from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
@@ -77,9 +77,10 @@ export class CreateSequenceName extends Component<
           />
         </FormControl>
         <br />
-        {/* <Button variant='contained' onClick={this.handleSubmit}>
-                    Create
-                    </Button> */}
+        <br />
+        <Button variant="contained" onClick={this.handleSubmit}>
+          Create
+        </Button>
       </div>
     );
   }

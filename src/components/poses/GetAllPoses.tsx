@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import APIURL from "../helpers/environment";
+import APIURL from "../../helpers/environment";
 // import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Button } from "@material-ui/core";
 // import { Button, TextField } from '@material-ui/core';
@@ -9,7 +9,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { FixedSizeList, ListChildComponentProps } from "react-window";
-import CardItemDisplay from "./notUsed/PoseCard";
+import CardItemDisplay from "../notUsed/PoseCard";
 import ViewPose from "./ViewPoses";
 
 type AcceptedProps = {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import APIURL from "../helpers/environment";
+import APIURL from "../../helpers/environment";
 import { Button } from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
@@ -32,28 +32,6 @@ type AllSequencesData = {
   //   title: string;
   //   style: any;
 };
-
-// class renderRow extends Component<ListChildComponentProps, AllSequencesData> {
-//   constructor(props: ListChildComponentProps) {
-//     super(props);
-//     this.state = {
-//       sequenceId: this.props.index,
-//       //   style: this.props.style,
-//       //   title: this.props.title,
-//     };
-//   }
-
-//   render() {
-//     return (
-//       <ListItem button style={this.state.style} key={this.state.sequenceId}>
-//         <ListItemText primary={`Item ${this.state.sequenceId + 1}`} />
-//         <Button variant="contained" onClick={this.handleSubmit}>
-//           Add Poses to Sequence
-//         </Button>
-//       </ListItem>
-//     );
-//   }
-// }
 
 export default class GetAllSequences extends Component<
   AcceptedProps,
@@ -99,13 +77,16 @@ export default class GetAllSequences extends Component<
       <div>
         <h2>All My Sequences</h2>
         {this.state.sequences.map((sequence: any) => {
-          <div>
-            <h1>{sequence.title}</h1>
-            <Button variant="contained">
-              {/* onClick={this.} */}
-              Add Poses to Sequence
-            </Button>
-          </div>;
+          console.log(sequence);
+          return (
+            <div>
+              <h4>{sequence.title}</h4>
+              <Button variant="contained">
+                {/* onClick={this.} */}
+                Add Poses to Sequence
+              </Button>
+            </div>
+          );
         })}
 
         <br />
@@ -116,3 +97,25 @@ export default class GetAllSequences extends Component<
     );
   }
 }
+
+// class renderRow extends Component<ListChildComponentProps, AllSequencesData> {
+//   constructor(props: ListChildComponentProps) {
+//     super(props);
+//     this.state = {
+//       sequenceId: this.props.index,
+//       //   style: this.props.style,
+//       //   title: this.props.title,
+//     };
+//   }
+
+//   render() {
+//     return (
+//       <ListItem button style={this.state.style} key={this.state.sequenceId}>
+//         <ListItemText primary={`Item ${this.state.sequenceId + 1}`} />
+//         <Button variant="contained" onClick={this.handleSubmit}>
+//           Add Poses to Sequence
+//         </Button>
+//       </ListItem>
+//     );
+//   }
+// }

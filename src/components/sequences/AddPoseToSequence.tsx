@@ -1,6 +1,6 @@
-import GetAllPoses from "./GetAllPoses";
+import GetAllPoses from "../poses/GetAllPoses";
 import React, { Component } from "react";
-import APIURL from "../helpers/environment";
+import APIURL from "../../helpers/environment";
 // import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Button, TextField } from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
@@ -27,7 +27,7 @@ type SequenceDataState = {
   posesInSequence: any;
 };
 
-export class AddPoseToSequence extends Component<
+export default class AddPoseToSequence extends Component<
   AcceptedProps,
   SequenceDataState
 > {

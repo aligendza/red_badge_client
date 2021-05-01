@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PoseCard from "./notUsed/PoseCard";
+import PoseCard from "../notUsed/PoseCard";
 import PosesCard from "./PosesCard";
 
 type acceptedProps = {
