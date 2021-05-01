@@ -26,7 +26,7 @@ type SequenceDataState = {
   posesInSequence: any;
 };
 
-export class CreateSequence extends Component<
+export class CreateSequenceName extends Component<
   AcceptedProps,
   SequenceDataState
 > {
@@ -84,4 +84,4 @@ export class CreateSequence extends Component<
     );
   }
 }
-export default CreateSequence;
+export default CreateSequenceName;
