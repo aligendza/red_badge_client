@@ -5,12 +5,13 @@ import CreatePose from "../components/poses/CreatePose";
 import GetAllPoses from "../components/poses/GetAllPoses";
 import CreateSequenceName from "../components/sequences/CreateSequenceName";
 import SequencesListAddPose from "../components/sequences/SequencesListAddPose";
+import AddPosesToASequence from "../components/sequences/AddPosesToASequence";
 
 type ControllerProps = {
   updateToken: (newToken: string) => void; // currently a function to update token, should be token itself IN CREATE POSE for auth
   updateUserRole: (newUserRole: string) => void;
   sessionToken: any;
-  // nameEng: string;
+  nameEng: string;
   // nameSans: string;
   // imgUrl: string;
   // poseCat: string;
@@ -19,6 +20,8 @@ type ControllerProps = {
   // owner: number;
   // title: string;
   // posesInSequence: any;
+  // pose: any;
+  // index: any;
 };
 
 const SwitchController: FC<ControllerProps> = (props) => {
@@ -44,6 +47,14 @@ const SwitchController: FC<ControllerProps> = (props) => {
         </Route>
         <Route exact path="/components/sequences/SequencesListAddPose">
           <SequencesListAddPose sessionToken={props.sessionToken} />
+        </Route>
+        <Route exact path="/components/sequences/AddPosesToASequence">
+          <AddPosesToASequence
+            // pose={props.pose}
+            // index={props.index}
+            sessionToken={props.sessionToken}
+            nameEng={props.nameEng}
+          />
         </Route>
       </Switch>
     </div>

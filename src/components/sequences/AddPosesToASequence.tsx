@@ -5,12 +5,16 @@ import APIURL from "../../helpers/environment";
 import { Button, TextField } from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 // import { YogaPose } from '../Interfaces';
+import ViewPosesAddToSeq from "./ViewPosesAddToSeq";
 
 type AcceptedProps = {
   // updateToken: (newToken: string) => void;  // string | null
   sessionToken: any;
   // updateRole: (newUserIsAdmin: string) => void;
   // YogaPose: [];
+  // pose: any;
+  // index: any;
+  nameEng: string;
 };
 
 type PoseDataState = {
@@ -25,6 +29,7 @@ type PoseDataState = {
 type SequenceDataState = {
   title: string;
   posesInSequence: any;
+  nameEng: string;
 };
 
 export default class AddPoseToSequence extends Component<
@@ -36,6 +41,7 @@ export default class AddPoseToSequence extends Component<
     this.state = {
       title: "",
       posesInSequence: "",
+      nameEng: "",
     };
   }
   token: string | null = localStorage.getItem("token");
@@ -66,8 +72,15 @@ export default class AddPoseToSequence extends Component<
   render() {
     return (
       <div>
-        <h2>Create a Sequence</h2>
-        <FormControl>
+        <h2>Add Pose to Sequence</h2>
+        <ViewPosesAddToSeq
+          sessionToken={this.props.sessionToken}
+          // pose={this.props.pose}
+          // index={this.props.index}
+          nameEng={this.props.nameEng}
+        />
+
+        {/* <FormControl>
           <TextField
             id="standard-basic"
             label="Sequence Name"
@@ -76,10 +89,10 @@ export default class AddPoseToSequence extends Component<
               this.setState({ title: e.target.value });
             }}
           />
-        </FormControl>
-        <br />
+        </FormControl> */}
+
         {/* <Button variant='contained' onClick={this.handleSubmit}>
-                    Create
+                    Add This Pose to Sequence
                     </Button> */}
       </div>
     );

@@ -13,7 +13,7 @@ type acceptedProps = {
   index: any;
 };
 
-export default class PosesCard extends Component<acceptedProps, {}> {
+export default class SequenceCardToAdd extends Component<acceptedProps, {}> {
   constructor(props: acceptedProps) {
     super(props);
     this.state = {};

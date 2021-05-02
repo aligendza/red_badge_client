@@ -51,7 +51,7 @@ export class CreateSequenceName extends Component<
         }),
         body: JSON.stringify({
           title: this.state.title,
-          posesInSequence: this.state.posesInSequence,
+          // posesInSequence: this.state.posesInSequence,
         }),
       })
         .then((res) => res.json())

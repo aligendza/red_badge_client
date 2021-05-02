@@ -10,6 +10,8 @@ type AcceptedProps = {
   updateRole: (newUserIsAdmin: string) => void;
   clearToken: () => void;
   sessionToken: any;
+  nameEng: string;
+  //   index: any;
 };
 
 type ValueTypes = {
@@ -164,6 +166,8 @@ export class Navbar extends Component<AcceptedProps, ValueTypes> {
             updateToken={this.props.updateToken}
             updateUserRole={this.props.updateRole}
             sessionToken={this.props.sessionToken}
+            nameEng={this.props.nameEng}
+            // index={this.props.index}
           />
         </div>
       </div>
