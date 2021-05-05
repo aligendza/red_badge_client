@@ -25,6 +25,9 @@ type AcceptedProps = {
   clearToken: () => void;
   sessionToken: any;
   sequenceId: number;
+  open: boolean;
+  selectedValue: string;
+  onClose: (value: string) => void;
 };
 
 type PoseDataState = {
@@ -35,37 +38,20 @@ type PoseDataState = {
   open: boolean;
 };
 
-const emails = ["username@gmail.com", "user02@gmail.com"];
-const useStyles = makeStyles({
-  avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
-  },
-});
-const handleListItemClick = (value: number) => {
-  onClose(value);
-};
+// const handleListItemClick = (value: number) => {
+//   onClose(value);
+// };
 
-export interface SimpleDialogProps {
+interface SimpleDialogProps extends AcceptedProps {
   open: boolean;
   selectedValue: string;
   onClose: (value: string) => void;
 }
 
-// function SimpleDialog(props: SimpleDialogProps) {
-//   const classes = useStyles();
-//   const { onClose, selectedValue, open } = props;
-
-//   const handleClose = () => {
-//     onClose(selectedValue);
-//   };
-
-//   const handleListItemClick = (value: string) => {
-//     onClose(value);
-//   };
-// }
-
-export class AddPosesModal extends Component<AcceptedProps, PoseDataState> {
+export default class AddPosesModal extends Component<
+  AcceptedProps,
+  PoseDataState
+> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
@@ -77,6 +63,15 @@ export class AddPosesModal extends Component<AcceptedProps, PoseDataState> {
     };
     console.log(props);
   }
+
+  handleClose = () => {
+    this.props.onClose(this.props.selectedValue);
+  };
+
+  handleListItemClick = (value: any) => {
+    this.props.onClose(value);
+  };
+
   handleSubmit = () => {
     if (this.props.sessionToken) {
       // e.preventDefault();
@@ -110,14 +105,9 @@ export class AddPosesModal extends Component<AcceptedProps, PoseDataState> {
   componentDidMount() {
     this.handleSubmit();
   }
-  //   handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-  //     this.setState({ anchorEl: event.currentTarget });
-  //   };
-  //   handleClose = () => {
-  //     this.setState({ anchorEl: null });
-  //   };
 
   render() {
+    const { onClose, selectedValue, ...other } = this.props;
     return (
       <div>
         <Button
@@ -137,53 +127,14 @@ export class AddPosesModal extends Component<AcceptedProps, PoseDataState> {
             {this.state.poses.map((pose) => (
               <ListItem
                 button
-                onClick={() => handleListItemClick(pose.id)}
+                onClick={() => this.handleListItemClick(pose.id)}
                 key={pose.id}
               >
-                {/* {this.props.poses.map((pose, index) => (
-          <PosesCard
-            sessionToken={this.props.sessionToken}
-            pose={pose}
-            index={index} */}
-
-                {/* <ListItemAvatar> */}
-                {/* <Avatar className={classes.avatar}>
-                    <PersonIcon />
-                  </Avatar>
-                </ListItemAvatar> */}
                 <ListItemText primary={pose} />
               </ListItem>
             ))}
-            {/* <ListItem
-              autoFocus
-              button
-              onClick={() => handleListItemClick("addAccount")}
-            > */}
-            {/* <ListItemAvatar>
-                <Avatar>
-                  <AddIcon />
-                </Avatar>
-              </ListItemAvatar> */}
-            {/* <ListItemText primary="Add account" />
-            </ListItem> */}
           </List>
         </Dialog>
-        {/* <Menu
-          id="simple-menu"
-          anchorEl={this.state.anchorEl}
-          keepMounted
-          open={Boolean(this.state.anchorEl)}
-          onClose={this.handleClose}
-        >
-          <MenuItem onClick={this.handleClose}>
-            <Link
-              style={{ color: "#000000" }}
-              to="/components/poses/CreatePose"
-            >
-              Whatever
-            </Link>
-          </MenuItem>
-        </Menu> */}
       </div>
     );
   }
