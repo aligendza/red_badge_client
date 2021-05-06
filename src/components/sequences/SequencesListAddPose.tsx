@@ -8,6 +8,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { FixedSizeList, ListChildComponentProps } from "react-window";
 import AddPoseToSequence from "./AddPosesToASequence";
 import { Link } from "react-router-dom";
+import AddPosesModal from "./AddPosesModal";
 
 type AcceptedProps = {
   // updateToken: (newToken: string) => void;  // string | null
@@ -114,11 +115,16 @@ export default class GetAllSequences extends Component<
               {sequence.poses.map((pose: any) => {
                 return <p>{pose.nameEng}</p>;
               })}
-              <Link to="/components/sequences/AddPosesToASequence">
+              <AddPosesModal
+                sequenceId={sequence.id}
+                sessionToken={this.props.sessionToken}
+                getAllSequences={this.getAllSequences}
+              ></AddPosesModal>
+              {/* <Link to="/components/sequences/AddPosesToASequence">
                 <Button variant="contained" onClick={() => this.handleSubmit}>
                   Add Poses to Sequence
                 </Button>
-              </Link>
+              </Link> */}
             </div>
           );
         })}

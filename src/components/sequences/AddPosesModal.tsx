@@ -20,14 +20,15 @@ import APIURL from "../../helpers/environment";
 import { YogaPose } from "../.././Interfaces";
 // import SwitchController from "./site/SwitchController";
 type AcceptedProps = {
-  updateToken: (newToken: string) => void;
-  updateRole: (newUserIsAdmin: string) => void;
-  clearToken: () => void;
+  // updateToken: (newToken: string) => void;
+  // updateRole: (newUserIsAdmin: string) => void;
+  // clearToken: () => void;
   sessionToken: any;
   sequenceId: number;
-  open: boolean;
-  selectedValue: string;
-  onClose: (value: string) => void;
+  getAllSequences: () => void;
+  // open: boolean;
+  // selectedValue: string;
+  // onClose: (value: string) => void;
 };
 
 type PoseDataState = {
@@ -65,14 +66,40 @@ export default class AddPosesModal extends Component<
   }
 
   handleClose = () => {
-    this.props.onClose(this.props.selectedValue);
+    // this.props.onClose(this.props.selectedValue);
+    this.setState({ open: false });
   };
 
-  handleListItemClick = (value: any) => {
-    this.props.onClose(value);
+  handleListItemClick = (value: number) => {
+    this.handleSubmit(value);
+    // this.props.onClose(value);
+    this.handleClose();
+  };
+  handleSubmit = (poseId: number) => {
+    if (this.props.sessionToken) {
+      // e.preventDefault();
+      // fetch("http://localhost:3000/pose/create", {
+      fetch(`${APIURL}/sequence/addpose/${this.props.sequenceId}/${poseId}`, {
+        method: "PUT",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: this.props.sessionToken,
+        }),
+        // body: JSON.stringify({
+        //   title: this.state.title,
+        //   posesInSequence: this.state.posesInSequence,
+        // }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          this.props.getAllSequences();
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
-  handleSubmit = () => {
+  getPoses = () => {
     if (this.props.sessionToken) {
       // e.preventDefault();
       // fetch("http://localhost:3000/pose/create", {
@@ -103,11 +130,11 @@ export default class AddPosesModal extends Component<
   };
   // classes = useStyles();
   componentDidMount() {
-    this.handleSubmit();
+    this.getPoses();
   }
 
   render() {
-    const { onClose, selectedValue, ...other } = this.props;
+    // const { onClose, selectedValue, ...other } = this.props;
     return (
       <div>
         <Button
@@ -122,7 +149,7 @@ export default class AddPosesModal extends Component<
           aria-labelledby="simple-dialog-title"
           open={this.state.open}
         >
-          <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+          <DialogTitle id="simple-dialog-title">Select a Pose</DialogTitle>
           <List>
             {this.state.poses.map((pose) => (
               <ListItem
@@ -130,7 +157,7 @@ export default class AddPosesModal extends Component<
                 onClick={() => this.handleListItemClick(pose.id)}
                 key={pose.id}
               >
-                <ListItemText primary={pose} />
+                <ListItemText primary={pose.nameEng} />
               </ListItem>
             ))}
           </List>
@@ -139,3 +166,50 @@ export default class AddPosesModal extends Component<
     );
   }
 }
+// SimpleDialog.propTypes = {
+//   classes: PropTypes.object.isRequired,
+//   onClose: PropTypes.func,
+//   selectedValue: PropTypes.string,
+// };
+
+// const SimpleDialogWrapped = withStyles(styles)(SimpleDialog);
+
+// class SimpleDialogDemo extends React.Component {
+//   state = {
+//     open: false,
+//     selectedValue: poses[1],
+//   };
+
+//   handleClickOpen = () => {
+//     this.setState({
+//       open: true,
+//     });
+//   };
+
+//   handleClose = (value) => {
+//     this.setState({ selectedValue: value, open: false });
+//   };
+
+//   render() {
+//     return (
+//       <div>
+//         <Typography variant="subtitle1">
+//           Selected: {this.state.selectedValue}
+//         </Typography>
+//         <br />
+//         <Button
+//           variant="outlined"
+//           color="primary"
+//           onClick={this.handleClickOpen}
+//         >
+//           Open simple dialog
+//         </Button>
+//         <SimpleDialogWrapped
+//           selectedValue={this.state.selectedValue}
+//           open={this.state.open}
+//           onClose={this.handleClose}
+//         />
+//       </div>
+//     );
+//   }
+// }
