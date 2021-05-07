@@ -82,7 +82,7 @@ export class Navbar extends Component<AcceptedProps, ValueTypes> {
               <MenuItem onClick={this.handleClose}>
                 <Link
                   style={{ color: "#000000" }}
-                  to="/components/poses/EditPose"
+                  to="/components/poses/GetAllPoses"
                 >
                   Edit a Pose
                 </Link>
@@ -90,7 +90,7 @@ export class Navbar extends Component<AcceptedProps, ValueTypes> {
               <MenuItem onClick={this.handleClose}>
                 <Link
                   style={{ color: "#000000" }}
-                  to="/components/poses/DeletePose"
+                  to="/components/poses/GetAllPoses"
                 >
                   Delete a Pose
                 </Link>
