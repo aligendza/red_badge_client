@@ -17,7 +17,7 @@ type PoseDataState = {
   imgUrl: string;
   poseCat: string;
 };
-export class editPose extends Component<AcceptedProps, PoseDataState> {
+export class DeletePose extends Component<AcceptedProps, PoseDataState> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
@@ -29,7 +29,7 @@ export class editPose extends Component<AcceptedProps, PoseDataState> {
     };
   }
 
-  handleSubmit = (e: any) => {
+  poseDelete = (e: any) => {
     if (this.props.Token) {
       e.preventDefault();
       // fetch("http://localhost:3000/user/login", {
@@ -39,25 +39,10 @@ export class editPose extends Component<AcceptedProps, PoseDataState> {
           "Content-Type": "application/json",
           Authorization: this.props.Token,
         }),
-        // body: JSON.stringify({
-        //     pose: {
-        //         id: this.state.id,
-        //         nameEng: this.state.nameEng,
-        //         nameSans: this.state.nameSans,
-        //         imgUrl: this.state.imgUrl,
-        //         poseCat: this.state.poseCat,
-        //     }
-        // }),
-      })
-        // .then((res) => res.json())
-        // .then((data) => {
-        //     console.log(data);
-        // })
-        // .catch((err) => console.log(err));
-        .then(() => {
-          console.log("Deleted Successfully");
-          this.handleSubmit(e);
-        });
+      }).then(() => {
+        console.log("Deleted Successfully");
+        this.poseDelete(e);
+      });
     }
   };
   // handleNameEngChange = (event: any) => {
@@ -112,7 +97,7 @@ export class editPose extends Component<AcceptedProps, PoseDataState> {
           />
         </FormControl>
         <br />
-        <Button variant="contained" onClick={this.handleSubmit}>
+        <Button variant="contained" onClick={this.poseDelete}>
           Edit
         </Button>
       </div>

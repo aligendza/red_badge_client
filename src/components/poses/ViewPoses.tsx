@@ -2,15 +2,22 @@ import React, { Component } from "react";
 import PoseCard from "../notUsed/PoseCard";
 import PosesCard from "./PosesCard";
 
-type acceptedProps = {
+type ViewPosesProps = {
   sessionToken: any;
   poses: [];
 };
 
-export default class ViewPose extends Component<acceptedProps, {}> {
-  constructor(props: acceptedProps) {
+export default class ViewPose extends Component<ViewPosesProps, {}> {
+  constructor(props: ViewPosesProps) {
     super(props);
-    this.state = {};
+    this.state = {
+      id: 0,
+      nameEng: "",
+      nameSans: "",
+      imgUrl: "",
+      poseCat: "",
+      poses: [],
+    };
   }
   render() {
     return (
@@ -19,7 +26,7 @@ export default class ViewPose extends Component<acceptedProps, {}> {
           <PosesCard
             sessionToken={this.props.sessionToken}
             pose={pose}
-            index={index}
+            // index={index}
           />
         ))}
       </div>

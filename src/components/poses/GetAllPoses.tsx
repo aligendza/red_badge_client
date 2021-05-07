@@ -12,7 +12,7 @@ import { FixedSizeList, ListChildComponentProps } from "react-window";
 import CardItemDisplay from "../notUsed/PoseCard";
 import ViewPose from "./ViewPoses";
 
-type AcceptedProps = {
+type GetAllPosesProps = {
   // updateToken: (newToken: string) => void;  // string | null
   sessionToken: any;
   // updateRole: (newUserIsAdmin: string) => void;
@@ -22,9 +22,9 @@ type AcceptedProps = {
 type PoseDataState = {
   id: number;
   nameEng: string;
-  nameSans: string;
-  imgUrl: string;
-  poseCat: string;
+  nameSans?: string;
+  imgUrl?: string;
+  poseCat?: string;
   poses: [];
 };
 
@@ -52,10 +52,10 @@ class renderRow extends Component<ListChildComponentProps, styleState> {
 }
 
 export default class GetAllPoses extends Component<
-  AcceptedProps,
+  GetAllPosesProps,
   PoseDataState
 > {
-  constructor(props: AcceptedProps) {
+  constructor(props: GetAllPosesProps) {
     super(props);
     this.state = {
       id: 0,
@@ -68,7 +68,7 @@ export default class GetAllPoses extends Component<
   }
   token: string | null = localStorage.getItem("token");
 
-  handleSubmit = () => {
+  getAllPoses = () => {
     if (this.props.sessionToken) {
       // e.preventDefault();
       // fetch("http://localhost:3000/pose/create", {
@@ -99,7 +99,7 @@ export default class GetAllPoses extends Component<
   };
   // classes = useStyles();
   componentDidMount() {
-    this.handleSubmit();
+    this.getAllPoses();
   }
 
   render() {

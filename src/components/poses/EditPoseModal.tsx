@@ -3,6 +3,9 @@ import APIURL from "../../helpers/environment";
 // import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Button, FormControl, TextField } from "@material-ui/core";
 // import { YogaPose } from '../Interfaces';
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Dialog from "@material-ui/core/Dialog";
+import { YogaPose } from "../.././Interfaces";
 
 type AcceptedProps = {
   Token: string | null;
@@ -16,8 +19,17 @@ type PoseDataState = {
   nameSans: string;
   imgUrl: string;
   poseCat: string;
+  poses: YogaPose[];
+  open: boolean;
 };
-export class editPose extends Component<AcceptedProps, PoseDataState> {
+// type PoseDataState = {
+//   //   anchorEl: any;
+//     id: number;
+//   //   nameEng: string;
+//   poses: YogaPose[];
+//   open: boolean;
+// };
+export class EditPoseModal extends Component<AcceptedProps, PoseDataState> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
@@ -26,6 +38,8 @@ export class editPose extends Component<AcceptedProps, PoseDataState> {
       nameSans: "",
       imgUrl: "",
       poseCat: "",
+      poses: [],
+      open: true,
     };
   }
 
@@ -72,45 +86,52 @@ export class editPose extends Component<AcceptedProps, PoseDataState> {
   render() {
     return (
       <div>
-        <h2>Edit a pose</h2>
-        <FormControl>
-          <TextField
-            id="standard-basic"
-            label="Pose Name in English"
-            type="text"
-            onChange={(e) => {
-              this.setState({ nameEng: e.target.value });
-            }}
-          />
-          <TextField
-            id="standard-basic"
-            label="Pose Name in Sanskrit"
-            type="text"
-            onChange={(e) => {
-              this.setState({ nameSans: e.target.value });
-            }}
-          />
-          <TextField
-            id="standard-basic"
-            label="Image Url"
-            type="text"
-            onChange={(e) => {
-              this.setState({ imgUrl: e.target.value });
-            }}
-          />
-          <TextField
-            id="standard-basic"
-            label="Pose Categories"
-            type="text"
-            onChange={(e) => {
-              this.setState({ poseCat: e.target.value });
-            }}
-          />
-        </FormControl>
-        <br />
-        <Button variant="contained" onClick={this.handleSubmit}>
-          Edit
-        </Button>
+        <Dialog
+          onClose={() => this.setState({ open: false })}
+          aria-labelledby="simple-dialog-title"
+          open={this.state.open}
+        >
+          <DialogTitle id="simple-dialog-title">Edit Pose</DialogTitle>
+          {/* <h2>Edit a Pose</h2> */}
+          <FormControl>
+            <TextField
+              id="standard-basic"
+              label="Pose Name in English"
+              type="text"
+              onChange={(e) => {
+                this.setState({ nameEng: e.target.value });
+              }}
+            />
+            <TextField
+              id="standard-basic"
+              label="Pose Name in Sanskrit"
+              type="text"
+              onChange={(e) => {
+                this.setState({ nameSans: e.target.value });
+              }}
+            />
+            <TextField
+              id="standard-basic"
+              label="Image Url"
+              type="text"
+              onChange={(e) => {
+                this.setState({ imgUrl: e.target.value });
+              }}
+            />
+            <TextField
+              id="standard-basic"
+              label="Pose Categories"
+              type="text"
+              onChange={(e) => {
+                this.setState({ poseCat: e.target.value });
+              }}
+            />
+          </FormControl>
+          <br />
+          <Button variant="contained" onClick={this.handleSubmit}>
+            Submit Edit
+          </Button>
+        </Dialog>
       </div>
     );
   }

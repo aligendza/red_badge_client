@@ -6,7 +6,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { FixedSizeList, ListChildComponentProps } from "react-window";
-import AddPoseToSequence from "./AddPosesToASequence";
+import AddPoseToSequence from "../notUsed/AddPosesToASequence";
 import { Link } from "react-router-dom";
 import AddPosesModal from "./AddPosesModal";
 

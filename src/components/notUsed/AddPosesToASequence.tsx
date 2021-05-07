@@ -5,7 +5,7 @@ import APIURL from "../../helpers/environment";
 import { Button, TextField } from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 // import { YogaPose } from '../Interfaces';
-import ViewPosesAddToSeq from "./ViewPosesAddToSeq";
+import ViewPosesAddToSeq from "../sequences/ViewPosesAddToSeq";
 
 type AcceptedProps = {
   // updateToken: (newToken: string) => void;  // string | null

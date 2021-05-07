@@ -5,7 +5,7 @@ import CreatePose from "../components/poses/CreatePose";
 import GetAllPoses from "../components/poses/GetAllPoses";
 import CreateSequenceName from "../components/sequences/CreateSequenceName";
 import SequencesListAddPose from "../components/sequences/SequencesListAddPose";
-import AddPosesToASequence from "../components/sequences/AddPosesToASequence";
+import AddPosesToASequence from "../components/notUsed/AddPosesToASequence";
 
 type ControllerProps = {
   updateToken: (newToken: string) => void; // currently a function to update token, should be token itself IN CREATE POSE for auth
