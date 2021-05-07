@@ -128,20 +128,20 @@ export class Navbar extends Component<AcceptedProps, ValueTypes> {
                   Create a Sequence
                 </Link>
               </MenuItem>
-              <MenuItem onClick={this.handleClose2}>
+              {/* <MenuItem onClick={this.handleClose2}>
                 <Link
                   style={{ color: "#000000" }}
                   to="/components/sequences/EditSequence"
                 >
-                  Edit a Sequence
+                  Add a Pose to a Sequence
                 </Link>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem onClick={this.handleClose2}>
                 <Link
                   style={{ color: "#000000" }}
-                  to="/components/sequences/DeleteSequence"
+                  to="/components/sequences/SequencesListDeletePose"
                 >
-                  Delete a Sequence
+                  Get All Sequences Delete Pose
                 </Link>
               </MenuItem>
               <MenuItem onClick={this.handleClose2}>
