@@ -17,6 +17,7 @@ type GetAllPosesProps = {
   sessionToken: any;
   // updateRole: (newUserIsAdmin: string) => void;
   // YogaPose: [];
+  getAllPoses: any;
 };
 
 type PoseDataState = {
@@ -33,25 +34,25 @@ type styleState = {
   index: any;
 };
 
-class renderRow extends Component<ListChildComponentProps, styleState> {
-  constructor(props: ListChildComponentProps) {
-    super(props);
-    this.state = {
-      index: this.props.index,
-      style: this.props.style,
-    };
-  }
+// class renderRow extends Component<ListChildComponentProps, styleState> {
+//   constructor(props: ListChildComponentProps) {
+//     super(props);
+//     this.state = {
+//       index: this.props.index,
+//       style: this.props.style,
+//     };
+//   }
 
-  render() {
-    return (
-      <ListItem button style={this.state.style} key={this.state.index}>
-        <ListItemText primary={`Item ${this.state.index + 1}`} />
-      </ListItem>
-    );
-  }
-}
+//   render() {
+//     return (
+//       <ListItem button style={this.state.style} key={this.state.index}>
+//         <ListItemText primary={`Item ${this.state.index + 1}`} />
+//       </ListItem>
+//     );
+//   }
+// }
 
-export default class GetAllPoses extends Component<
+export default class getAllPoses extends Component<
   GetAllPosesProps,
   PoseDataState
 > {
@@ -111,6 +112,7 @@ export default class GetAllPoses extends Component<
         <ViewPose
           sessionToken={this.props.sessionToken}
           poses={this.state.poses}
+          getAllPoses={this.props.getAllPoses}
         />
         {/* <FixedSizeList height={400} width={300} itemSize={46} itemCount={200}>
                     {renderRow}

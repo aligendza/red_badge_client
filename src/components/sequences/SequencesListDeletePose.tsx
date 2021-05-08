@@ -75,28 +75,28 @@ export default class GetAllSequences extends Component<
         .catch((err) => console.log(err));
     }
   };
-  handleSubmit = (e: any) => {
-    if (this.props.sessionToken) {
-      e.preventDefault();
-      // fetch("http://localhost:3000/pose/create", {
-      fetch(`${APIURL}/sequence/addpose/:sequenceId/:posesId`, {
-        method: "PUT",
-        headers: new Headers({
-          "Content-Type": "application/json",
-          Authorization: this.props.sessionToken,
-        }),
-        body: JSON.stringify({
-          title: this.state.title,
-          posesInSequence: this.state.posesInSequence,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data, this.props.sessionToken, this.token);
-        })
-        .catch((err) => console.log(err));
-    }
-  };
+  //   handleSubmit = (e: any) => {
+  //     if (this.props.sessionToken) {
+  //       e.preventDefault();
+  //       // fetch("http://localhost:3000/pose/create", {
+  //       fetch(`${APIURL}/sequence/delete/${sequenceId}/${posesId}`, {
+  //         method: "PUT",
+  //         headers: new Headers({
+  //           "Content-Type": "application/json",
+  //           Authorization: this.props.sessionToken,
+  //         }),
+  //         body: JSON.stringify({
+  //           title: this.state.title,
+  //           posesInSequence: this.state.posesInSequence,
+  //         }),
+  //       })
+  //         .then((res) => res.json())
+  //         .then((data) => {
+  //           console.log(data, this.props.sessionToken, this.token);
+  //         })
+  //         .catch((err) => console.log(err));
+  //     }
+  //   };
 
   // classes = useStyles();
   componentDidMount() {

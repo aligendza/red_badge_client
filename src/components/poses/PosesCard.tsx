@@ -11,6 +11,7 @@ import APIURL from "../../helpers/environment";
 type AcceptedProps = {
   sessionToken: any;
   pose: any;
+  getAllPoses: any;
 };
 
 type PoseDataState = {
@@ -22,36 +23,36 @@ type PoseDataState = {
   poses: [];
 };
 
-export class DeletePose extends Component<AcceptedProps, PoseDataState> {
-  constructor(props: AcceptedProps) {
-    super(props);
-    this.state = {
-      id: 0,
-      nameEng: "",
-      nameSans: "",
-      imgUrl: "",
-      poseCat: "",
-      poses: [],
-    };
-  }
+// export class DeletePose extends Component<AcceptedProps, PoseDataState> {
+//   constructor(props: AcceptedProps) {
+//     super(props);
+//     this.state = {
+//       id: 0,
+//       nameEng: "",
+//       nameSans: "",
+//       imgUrl: "",
+//       poseCat: "",
+//       poses: [],
+//     };
+//   }
 
-  poseDelete = (e: any) => {
-    if (this.props.sessionToken) {
-      e.preventDefault();
-      // fetch("http://localhost:3000/user/login", {
-      fetch(`${APIURL}//delete/:id`, {
-        method: "DELETE",
-        headers: new Headers({
-          "Content-Type": "application/json",
-          Authorization: this.props.sessionToken,
-        }),
-      }).then(() => {
-        console.log("Deleted Successfully");
-        this.poseDelete(e);
-      });
-    }
-  };
-}
+//   poseDelete = (e: any) => {
+//     if (this.props.sessionToken) {
+//       e.preventDefault();
+//       // fetch("http://localhost:3000/user/login", {
+//       fetch(`${APIURL}/pose/delete/${this.props.pose.id}`, {
+//         method: "DELETE",
+//         headers: new Headers({
+//           "Content-Type": "application/json",
+//           Authorization: this.props.sessionToken,
+//         }),
+//       }).then(() => {
+//         console.log("Deleted Successfully");
+//         this.poseDelete(e);
+//       });
+//     }
+//   };
+// }
 export default class PosesCard extends Component<AcceptedProps, {}> {
   constructor(props: AcceptedProps) {
     super(props);
@@ -62,7 +63,7 @@ export default class PosesCard extends Component<AcceptedProps, {}> {
     if (this.props.sessionToken) {
       e.preventDefault();
       // fetch("http://localhost:3000/user/login", {
-      fetch(`${APIURL}//delete/:id`, {
+      fetch(`${APIURL}/pose/delete/${this.props.pose.id}`, {
         method: "DELETE",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -70,7 +71,7 @@ export default class PosesCard extends Component<AcceptedProps, {}> {
         }),
       }).then(() => {
         console.log("Deleted Successfully");
-        this.poseDelete(e);
+        this.props.getAllPoses();
       });
     }
   };

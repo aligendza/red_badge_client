@@ -5,6 +5,7 @@ import PosesCard from "./PosesCard";
 type ViewPosesProps = {
   sessionToken: any;
   poses: [];
+  getAllPoses: any;
 };
 
 export default class ViewPose extends Component<ViewPosesProps, {}> {
@@ -17,6 +18,7 @@ export default class ViewPose extends Component<ViewPosesProps, {}> {
       imgUrl: "",
       poseCat: "",
       poses: [],
+      getAllPoses: "",
     };
   }
   render() {
@@ -26,6 +28,7 @@ export default class ViewPose extends Component<ViewPosesProps, {}> {
           <PosesCard
             sessionToken={this.props.sessionToken}
             pose={pose}
+            getAllPoses={this.props.getAllPoses}
             // index={index}
           />
         ))}
