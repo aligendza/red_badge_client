@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import APIURL from "../../helpers/environment";
 import EditPoseModal from "./EditPoseModal";
-import Link from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type AcceptedProps = {
   sessionToken: any;
@@ -134,11 +134,18 @@ export default class PosesCard extends Component<AcceptedProps, PoseDataState> {
             <Button size="small" color="primary" onClick={this.poseDelete}>
               Delete
             </Button>
-            <Button size="small" color="primary" onClick={this.poseEdit}>
-              Edit Pose
-            </Button>
+            <Link style={{ color: "#000000" }} to="/EditPoseModal">
+              <Button size="small" color="primary">
+                Edit Pose
+              </Button>
+            </Link>
           </CardActions>
         </Card>
+        {/* <Button style={{ margin: "1rem 3rem" }}>
+              <Link style={{ color: "#000000" }} to="/site/home">
+                User Home
+              </Link>
+            </Button> */}
       </div>
     );
   }
