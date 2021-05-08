@@ -70,7 +70,7 @@ export default class PosesCard extends Component<AcceptedProps, {}> {
           Authorization: this.props.sessionToken,
         }),
       }).then(() => {
-        console.log("Deleted Successfully");
+        console.log(this.props.pose.id, "Deleted Successfully");
         this.props.getAllPoses();
       });
     }
@@ -79,6 +79,7 @@ export default class PosesCard extends Component<AcceptedProps, {}> {
     return (
       <div>
         <Card>
+          {/* {console.log(this.props.pose)} */}
           <CardActionArea>
             <CardMedia
               //   image={props.imgUrl}
@@ -89,10 +90,11 @@ export default class PosesCard extends Component<AcceptedProps, {}> {
                 {/* Lizard */}
                 {this.props.pose.nameEng}
               </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                {/* Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica */}
-              </Typography>
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                component="p"
+              ></Typography>
             </CardContent>
           </CardActionArea>
           <CardActions>
