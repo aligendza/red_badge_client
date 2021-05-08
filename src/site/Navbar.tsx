@@ -11,6 +11,7 @@ type AcceptedProps = {
   clearToken: () => void;
   sessionToken: any;
   nameEng: string;
+  getAllPoses: any;
   //   index: any;
 };
 
@@ -167,6 +168,7 @@ export class Navbar extends Component<AcceptedProps, ValueTypes> {
             updateUserRole={this.props.updateRole}
             sessionToken={this.props.sessionToken}
             nameEng={this.props.nameEng}
+            getAllPoses={this.props.getAllPoses}
             // index={this.props.index}
           />
         </div>

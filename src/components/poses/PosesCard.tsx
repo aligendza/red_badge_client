@@ -7,6 +7,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import APIURL from "../../helpers/environment";
+import EditPoseModal from "./EditPoseModal";
+import Link from "react-router-dom";
 
 type AcceptedProps = {
   sessionToken: any;
@@ -53,10 +55,17 @@ type PoseDataState = {
 //     }
 //   };
 // }
-export default class PosesCard extends Component<AcceptedProps, {}> {
+export default class PosesCard extends Component<AcceptedProps, PoseDataState> {
   constructor(props: AcceptedProps) {
     super(props);
-    this.state = {};
+    this.state = {
+      id: 0,
+      nameEng: "",
+      nameSans: "",
+      imgUrl: "",
+      poseCat: "",
+      poses: [],
+    };
     console.log(this.props.pose);
   }
   poseDelete = (e: any) => {
@@ -71,6 +80,30 @@ export default class PosesCard extends Component<AcceptedProps, {}> {
         }),
       }).then(() => {
         console.log(this.props.pose.id, "Deleted Successfully");
+        this.props.getAllPoses();
+      });
+    }
+  };
+  poseEdit = (e: any) => {
+    if (this.props.sessionToken) {
+      e.preventDefault();
+      // fetch("http://localhost:3000/user/login", {
+      fetch(`${APIURL}/pose/update/${this.props.pose.id}`, {
+        method: "PUT",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: this.props.sessionToken,
+        }),
+        body: JSON.stringify({
+          // pose: {
+          nameEng: this.state.nameEng,
+          nameSans: this.state.nameSans,
+          imgUrl: this.state.imgUrl,
+          poseCat: this.state.poseCat,
+          // }
+        }),
+      }).then(() => {
+        console.log(this.props.pose.id, "Updated Successfully");
         this.props.getAllPoses();
       });
     }
@@ -101,7 +134,7 @@ export default class PosesCard extends Component<AcceptedProps, {}> {
             <Button size="small" color="primary" onClick={this.poseDelete}>
               Delete
             </Button>
-            <Button size="small" color="primary">
+            <Button size="small" color="primary" onClick={this.poseEdit}>
               Edit Pose
             </Button>
           </CardActions>

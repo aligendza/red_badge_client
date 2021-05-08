@@ -12,6 +12,7 @@ type ControllerProps = {
   updateUserRole: (newUserRole: string) => void;
   sessionToken: any;
   nameEng: string;
+  getAllPoses: any;
   // nameSans: string;
   // imgUrl: string;
   // poseCat: string;
@@ -40,7 +41,10 @@ const SwitchController: FC<ControllerProps> = (props) => {
           <CreatePose sessionToken={props.sessionToken} />
         </Route>
         <Route exact path="/components/poses/GetAllPoses">
-          <GetAllPoses sessionToken={props.sessionToken} />
+          <GetAllPoses
+            sessionToken={props.sessionToken}
+            getAllPoses={props.getAllPoses}
+          />
         </Route>
         <Route exact path="/components/sequences/CreateSequenceName">
           <CreateSequenceName sessionToken={props.sessionToken} />

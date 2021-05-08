@@ -29,7 +29,10 @@ type PoseDataState = {
 //   poses: YogaPose[];
 //   open: boolean;
 // };
-export class EditPoseModal extends Component<AcceptedProps, PoseDataState> {
+export default class EditPoseModal extends Component<
+  AcceptedProps,
+  PoseDataState
+> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {

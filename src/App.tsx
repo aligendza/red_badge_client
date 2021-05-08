@@ -10,6 +10,7 @@ type sessionState = {
   sessionToken: string | null;
   isAdmin: string;
   nameEng: string;
+  getAllPoses: any;
   // posesInSequence: any;
 };
 
@@ -20,6 +21,7 @@ export default class App extends Component<{}, sessionState> {
       sessionToken: "",
       isAdmin: "false",
       nameEng: "",
+      getAllPoses: "",
       // title: "",
       // posesInSequence: "",
     };
@@ -74,6 +76,7 @@ export default class App extends Component<{}, sessionState> {
               clearToken={this.clearToken}
               sessionToken={this.state.sessionToken}
               nameEng={this.state.nameEng}
+              getAllPoses={this.state.getAllPoses}
               // pose={this.pose}
               // title={this.}
               // posesInSequence: "",
