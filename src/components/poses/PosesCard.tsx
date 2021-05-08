@@ -84,30 +84,30 @@ export default class PosesCard extends Component<AcceptedProps, PoseDataState> {
       });
     }
   };
-  poseEdit = (e: any) => {
-    if (this.props.sessionToken) {
-      e.preventDefault();
-      // fetch("http://localhost:3000/user/login", {
-      fetch(`${APIURL}/pose/update/${this.props.pose.id}`, {
-        method: "PUT",
-        headers: new Headers({
-          "Content-Type": "application/json",
-          Authorization: this.props.sessionToken,
-        }),
-        body: JSON.stringify({
-          // pose: {
-          nameEng: this.state.nameEng,
-          nameSans: this.state.nameSans,
-          imgUrl: this.state.imgUrl,
-          poseCat: this.state.poseCat,
-          // }
-        }),
-      }).then(() => {
-        console.log(this.props.pose.id, "Updated Successfully");
-        this.props.getAllPoses();
-      });
-    }
-  };
+  // poseEdit = (e: any) => {
+  //   if (this.props.sessionToken) {
+  //     e.preventDefault();
+  //     // fetch("http://localhost:3000/user/login", {
+  //     fetch(`${APIURL}/pose/update/${this.props.pose.id}`, {
+  //       method: "PUT",
+  //       headers: new Headers({
+  //         "Content-Type": "application/json",
+  //         Authorization: this.props.sessionToken,
+  //       }),
+  //       body: JSON.stringify({
+  //         // pose: {
+  //         nameEng: this.state.nameEng,
+  //         nameSans: this.state.nameSans,
+  //         imgUrl: this.state.imgUrl,
+  //         poseCat: this.state.poseCat,
+  //         // }
+  //       }),
+  //     }).then(() => {
+  //       console.log(this.props.pose.id, "Updated Successfully");
+  //       this.props.getAllPoses();
+  //     });
+  //   }
+  // };
   render() {
     return (
       <div>
@@ -134,11 +134,13 @@ export default class PosesCard extends Component<AcceptedProps, PoseDataState> {
             <Button size="small" color="primary" onClick={this.poseDelete}>
               Delete
             </Button>
-            <Link style={{ color: "#000000" }} to="/EditPoseModal">
-              <Button size="small" color="primary">
+            <EditPoseModal
+              sessionToken={this.props.sessionToken}
+              poseId={this.props.pose.id}
+            ></EditPoseModal>
+            {/* <Button size="small" color="primary">
                 Edit Pose
-              </Button>
-            </Link>
+              </Button> */}
           </CardActions>
         </Card>
         {/* <Button style={{ margin: "1rem 3rem" }}>

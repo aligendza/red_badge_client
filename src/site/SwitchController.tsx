@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Switch, Route } from "react-router-dom";
 import Auth from "../auth/Auth";
 import CreatePose from "../components/poses/CreatePose";
+import EditPoseModal from "../components/poses/EditPoseModal";
 import GetAllPoses from "../components/poses/GetAllPoses";
 import CreateSequenceName from "../components/sequences/CreateSequenceName";
 import SequencesListAddPose from "../components/sequences/SequencesListAddPose";
@@ -59,6 +60,9 @@ const SwitchController: FC<ControllerProps> = (props) => {
             sessionToken={props.sessionToken}
             nameEng={props.nameEng}
           />
+        </Route> */}
+        {/* <Route exact path="/EditPoseModal">
+          <EditPoseModal sessionToken={props.sessionToken} />
         </Route> */}
         <Route exact path="/components/sequences/SequencesListDeletePose">
           <SequencesListDeletePose sessionToken={props.sessionToken} />

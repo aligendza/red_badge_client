@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import APIURL from "../../helpers/environment";
 // import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import { Button, FormControl, TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 // import { YogaPose } from '../Interfaces';
+import FormControl from "@material-ui/core/FormControl";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
 import { YogaPose } from "../.././Interfaces";
 
 type AcceptedProps = {
-  Token: string | null;
+  // Token: string | null;
   // updateRole: (newUserIsAdmin: string) => void;
   // YogaPose: [];
+  sessionToken: any;
+  poseId: number;
 };
 
 type PoseDataState = {
@@ -19,7 +22,7 @@ type PoseDataState = {
   nameSans: string;
   imgUrl: string;
   poseCat: string;
-  poses: YogaPose[];
+  // poses: YogaPose[];
   open: boolean;
 };
 // type PoseDataState = {
@@ -41,24 +44,24 @@ export default class EditPoseModal extends Component<
       nameSans: "",
       imgUrl: "",
       poseCat: "",
-      poses: [],
-      open: true,
+      // poses: [],
+      open: false,
     };
   }
 
   handleSubmit = (e: any) => {
-    if (this.props.Token) {
+    if (this.props.sessionToken) {
       e.preventDefault();
       // fetch("http://localhost:3000/user/login", {
-      fetch(`${APIURL}/update/:entryId`, {
+      fetch(`${APIURL}/pose/update/${this.props.poseId}`, {
         method: "PUT",
         headers: new Headers({
           "Content-Type": "application/json",
-          Authorization: this.props.Token,
+          Authorization: this.props.sessionToken,
         }),
         body: JSON.stringify({
           pose: {
-            id: this.state.id,
+            id: this.props.poseId,
             nameEng: this.state.nameEng,
             nameSans: this.state.nameSans,
             imgUrl: this.state.imgUrl,
@@ -85,10 +88,15 @@ export default class EditPoseModal extends Component<
   //     const password = event.target.value;
   //     this.setState({ password: password })
   // };
-
+  componentDidMount() {
+    // this.handleSubmit;
+  }
   render() {
     return (
       <div>
+             <Button size="small" color="primary" onClick={()=>this.setState({open: true})}>
+                Edit Pose
+             </Button> 
         <Dialog
           onClose={() => this.setState({ open: false })}
           aria-labelledby="simple-dialog-title"
