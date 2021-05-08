@@ -49,6 +49,10 @@ export default class EditPoseModal extends Component<
     };
   }
 
+  componentDidMount() {
+    this.fetchPose();
+  }
+
   handleSubmit = (e: any) => {
     if (this.props.sessionToken) {
       e.preventDefault();
@@ -61,7 +65,7 @@ export default class EditPoseModal extends Component<
         }),
         body: JSON.stringify({
           pose: {
-            id: this.props.poseId,
+            // id: this.props.poseId,
             nameEng: this.state.nameEng,
             nameSans: this.state.nameSans,
             imgUrl: this.state.imgUrl,
@@ -76,27 +80,48 @@ export default class EditPoseModal extends Component<
         .catch((err) => console.log(err));
     }
   };
-  // handleNameEngChange = (event: any) => {
-  //     this.setState({
-  //         Pose: {
-  //             ...this.state.Pose,
-  //             nameEng: event.target.value
-  //         }
-  //     })
-  // };
-  // handlePasswordChange = (event: any) => {
-  //     const password = event.target.value;
-  //     this.setState({ password: password })
-  // };
-  componentDidMount() {
-    // this.handleSubmit;
-  }
+
+  fetchPose = () => {
+    if (this.props.sessionToken) {
+      // fetch("http://localhost:3000/user/login", {
+      fetch(`${APIURL}/pose/one/${this.props.poseId}`, {
+        method: "GET",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: this.props.sessionToken,
+        }),
+        // body: JSON.stringify({
+        //   pose: {
+        //     // id: this.props.poseId,
+        //     nameEng: this.state.nameEng,
+        //     nameSans: this.state.nameSans,
+        //     imgUrl: this.state.imgUrl,
+        //     poseCat: this.state.poseCat,
+        //   },
+        // }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          this.setState({ nameEng: data.nameEng });
+          this.setState({ nameSans: data.nameSans });
+          this.setState({ imgUrl: data.imgUrl });
+          this.setState({ poseCat: data.poseCat });
+          console.log(data);
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   render() {
     return (
       <div>
-             <Button size="small" color="primary" onClick={()=>this.setState({open: true})}>
-                Edit Pose
-             </Button> 
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => this.setState({ open: true })}
+        >
+          Edit Pose
+        </Button>
         <Dialog
           onClose={() => this.setState({ open: false })}
           aria-labelledby="simple-dialog-title"
@@ -109,6 +134,7 @@ export default class EditPoseModal extends Component<
               id="standard-basic"
               label="Pose Name in English"
               type="text"
+              value={this.state.nameEng}
               onChange={(e) => {
                 this.setState({ nameEng: e.target.value });
               }}
@@ -117,6 +143,7 @@ export default class EditPoseModal extends Component<
               id="standard-basic"
               label="Pose Name in Sanskrit"
               type="text"
+              value={this.state.nameSans}
               onChange={(e) => {
                 this.setState({ nameSans: e.target.value });
               }}
@@ -125,6 +152,7 @@ export default class EditPoseModal extends Component<
               id="standard-basic"
               label="Image Url"
               type="text"
+              value={this.state.imgUrl}
               onChange={(e) => {
                 this.setState({ imgUrl: e.target.value });
               }}
@@ -133,6 +161,7 @@ export default class EditPoseModal extends Component<
               id="standard-basic"
               label="Pose Categories"
               type="text"
+              value={this.state.poseCat}
               onChange={(e) => {
                 this.setState({ poseCat: e.target.value });
               }}
