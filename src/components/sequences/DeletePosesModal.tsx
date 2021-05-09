@@ -39,6 +39,7 @@ type PoseDataState = {
   open: boolean;
   poseId: number;
   sequenceId: number;
+  sequencePose: [];
 };
 
 // const handleListItemClick = (value: number) => {
@@ -65,6 +66,7 @@ export default class DeletePosesModal extends Component<
       poseId: 0,
       open: false,
       sequenceId: 0,
+      sequencePose: [],
     };
     console.log(props);
   }
@@ -83,20 +85,17 @@ export default class DeletePosesModal extends Component<
     if (this.props.sessionToken) {
       // e.preventDefault();
       // fetch("http://localhost:3000/pose/create", {
-      fetch(
-        `${APIURL}sequence/delete/${this.props.sequenceId}/${this.state.poseId}`,
-        {
-          method: "DELETE",
-          headers: new Headers({
-            "Content-Type": "application/json",
-            Authorization: this.props.sessionToken,
-          }),
-          // body: JSON.stringify({
-          //   title: this.state.title,
-          //   posesInSequence: this.state.posesInSequence,
-          // }),
-        }
-      )
+      fetch(`${APIURL}/sequence/delete/${this.props.sequenceId}/${poseId}`, {
+        method: "DELETE",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: this.props.sessionToken,
+        }),
+        // body: JSON.stringify({
+        //   title: this.state.title,
+        //   posesInSequence: this.state.posesInSequence,
+        // }),
+      })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -130,7 +129,7 @@ export default class DeletePosesModal extends Component<
         .then((res) => res.json())
         .then((data) => {
           // console.log(data, this.props.sessionToken);
-          this.setState({ poses: data });
+          this.setState({ poses: data.poses });
         })
         .catch((err) => console.log(err));
     }
@@ -164,7 +163,8 @@ export default class DeletePosesModal extends Component<
                 key={pose.id}
                 onClick={(e) => {
                   this.setState({ poseId: pose.id });
-                  this.handleListItemClick(this.state.poseId);
+                  console.log({ poseId: pose.id });
+                  this.handleListItemClick(pose.id);
                 }}
               >
                 <ListItemText primary={pose.nameEng} />
