@@ -37,6 +37,8 @@ type PoseDataState = {
   //   nameEng: string;
   poses: YogaPose[];
   open: boolean;
+  poseId: number;
+  sequenceId: number;
 };
 
 // const handleListItemClick = (value: number) => {
@@ -49,7 +51,7 @@ interface SimpleDialogProps extends AcceptedProps {
   onClose: (value: string) => void;
 }
 
-export default class AddPosesModal extends Component<
+export default class DeletePosesModal extends Component<
   AcceptedProps,
   PoseDataState
 > {
@@ -60,7 +62,9 @@ export default class AddPosesModal extends Component<
       //   id: 0,
       //   nameEng: "",
       poses: [],
+      poseId: 0,
       open: false,
+      sequenceId: 0,
     };
     console.log(props);
   }
@@ -79,17 +83,20 @@ export default class AddPosesModal extends Component<
     if (this.props.sessionToken) {
       // e.preventDefault();
       // fetch("http://localhost:3000/pose/create", {
-      fetch(`${APIURL}/delete/${this.props.sequenceId}/${poseId}`, {
-        method: "DELETE",
-        headers: new Headers({
-          "Content-Type": "application/json",
-          Authorization: this.props.sessionToken,
-        }),
-        // body: JSON.stringify({
-        //   title: this.state.title,
-        //   posesInSequence: this.state.posesInSequence,
-        // }),
-      })
+      fetch(
+        `${APIURL}sequence/delete/${this.props.sequenceId}/${this.state.poseId}`,
+        {
+          method: "DELETE",
+          headers: new Headers({
+            "Content-Type": "application/json",
+            Authorization: this.props.sessionToken,
+          }),
+          // body: JSON.stringify({
+          //   title: this.state.title,
+          //   posesInSequence: this.state.posesInSequence,
+          // }),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -113,7 +120,7 @@ export default class AddPosesModal extends Component<
         // this.state.imgUrl,
         // this.state.poseCat
       );
-      fetch(`${APIURL}/pose/`, {
+      fetch(`${APIURL}/sequence/${this.props.sequenceId}`, {
         method: "GET",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -122,7 +129,7 @@ export default class AddPosesModal extends Component<
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data, this.props.sessionToken);
+          // console.log(data, this.props.sessionToken);
           this.setState({ poses: data });
         })
         .catch((err) => console.log(err));
@@ -154,13 +161,17 @@ export default class AddPosesModal extends Component<
             {this.state.poses.map((pose) => (
               <ListItem
                 button
-                onClick={() => this.handleListItemClick(pose.id)}
                 key={pose.id}
+                onClick={(e) => {
+                  this.setState({ poseId: pose.id });
+                  this.handleListItemClick(this.state.poseId);
+                }}
               >
                 <ListItemText primary={pose.nameEng} />
               </ListItem>
             ))}
           </List>
+          {console.log(this.state.poseId)}
         </Dialog>
       </div>
     );

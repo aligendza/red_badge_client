@@ -51,6 +51,7 @@ export default class EditPoseModal extends Component<
 
   componentDidMount() {
     this.fetchPose();
+    console.log(this.props.poseId);
   }
 
   handleSubmit = (e: any) => {
@@ -64,13 +65,11 @@ export default class EditPoseModal extends Component<
           Authorization: this.props.sessionToken,
         }),
         body: JSON.stringify({
-          pose: {
-            // id: this.props.poseId,
-            nameEng: this.state.nameEng,
-            nameSans: this.state.nameSans,
-            imgUrl: this.state.imgUrl,
-            poseCat: this.state.poseCat,
-          },
+          // id: this.props.poseId,
+          nameEng: this.state.nameEng,
+          nameSans: this.state.nameSans,
+          imgUrl: this.state.imgUrl,
+          poseCat: this.state.poseCat,
         }),
       })
         .then((res) => res.json())
@@ -121,6 +120,7 @@ export default class EditPoseModal extends Component<
           onClick={() => this.setState({ open: true })}
         >
           Edit Pose
+          {console.log(this.props.poseId)}
         </Button>
         <Dialog
           onClose={() => this.setState({ open: false })}
