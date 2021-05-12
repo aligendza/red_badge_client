@@ -50,7 +50,10 @@ export class Navbar extends Component<AcceptedProps, ValueTypes> {
     return (
       <div>
         <div>
-          <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
+          <Toolbar
+            id="toolbg"
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
             <Button style={{ margin: "1rem 3rem" }}>
               <Link style={{ color: "#000000" }} to="/site/home">
                 User Home
@@ -58,7 +61,7 @@ export class Navbar extends Component<AcceptedProps, ValueTypes> {
             </Button>
             {/* Poses Menu */}
             <Button
-              style={{ margin: "1rem 3rem" }}
+              style={{ margin: "1rem 3rem", textDecoration: "underline" }}
               aria-controls="simple-menu"
               aria-haspopup="true"
               onClick={this.handleClick}
@@ -107,7 +110,7 @@ export class Navbar extends Component<AcceptedProps, ValueTypes> {
             </Menu>
             {/* Sequences Menu */}
             <Button
-              style={{ margin: "1rem 3rem" }}
+              style={{ margin: "1rem 3rem", textDecoration: "underline" }}
               aria-controls="simple-menu2"
               aria-haspopup="true"
               onClick={this.handleClick2}

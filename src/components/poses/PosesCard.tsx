@@ -9,6 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import APIURL from "../../helpers/environment";
 import EditPoseModal from "./EditPoseModal";
 import { Link } from "react-router-dom";
+import { Container, Row, Col } from "reactstrap";
+import Box from "@material-ui/core/Box";
 
 type AcceptedProps = {
   sessionToken: any;
@@ -110,45 +112,62 @@ export default class PosesCard extends Component<AcceptedProps, PoseDataState> {
   // };
   render() {
     return (
+      // <div className="container-fluid padding">
+      //   <div className="row padding">
+      //     <div className="col-md-4">
       <div>
-        <Card>
-          {/* {console.log(this.props.pose)} */}
-          <CardActionArea>
-            <CardMedia
-              //   image={props.imgUrl}
-              title={this.props.pose.nameEng}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {/* Lizard */}
-                {this.props.pose.nameEng}
-              </Typography>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-                component="p"
-              ></Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary" onClick={this.poseDelete}>
-              Delete
-            </Button>
-            <EditPoseModal
-              sessionToken={this.props.sessionToken}
-              poseId={this.props.pose.id}
-            ></EditPoseModal>
-            {/* <Button size="small" color="primary">
+        <Container className="container-fluid padding">
+          <Row className="justify-content-md-center">
+            <Col className="col-md-4" id="card">
+              <Box width={1 / 4} id="cpadding">
+                <Card>
+                  {/* {console.log(this.props.pose)} */}
+                  <CardActionArea>
+                    <CardMedia
+                      //   image={props.imgUrl}
+                      title={this.props.pose.nameEng}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {/* Lizard */}
+                        {this.props.pose.nameEng}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                      ></Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                    <Button
+                      size="small"
+                      color="primary"
+                      onClick={this.poseDelete}
+                    >
+                      Delete
+                    </Button>
+                    <EditPoseModal
+                      sessionToken={this.props.sessionToken}
+                      poseId={this.props.pose.id}
+                    ></EditPoseModal>
+                    {/* <Button size="small" color="primary">
                 Edit Pose
               </Button> */}
-          </CardActions>
-        </Card>
-        {/* <Button style={{ margin: "1rem 3rem" }}>
+                  </CardActions>
+                </Card>
+                {/* <Button style={{ margin: "1rem 3rem" }}>
               <Link style={{ color: "#000000" }} to="/site/home">
                 User Home
               </Link>
             </Button> */}
+              </Box>
+            </Col>
+          </Row>
+        </Container>
       </div>
+      //   </div>
+      // </div>
     );
   }
 }

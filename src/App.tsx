@@ -65,7 +65,8 @@ export default class App extends Component<{}, sessionState> {
     const token: string | null = localStorage.getItem("token");
     return (
       <div className="App">
-        <h1>Welcome to Flow</h1>
+        <h2 id="Title">Welcome to </h2>
+        <h1 id="TitleAlt">Flow</h1>
         <Router>
           {this.state.sessionToken === "" ? (
             <Auth updateToken={this.updateToken} updateRole={this.updateRole} />

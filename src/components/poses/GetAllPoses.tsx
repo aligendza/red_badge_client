@@ -108,7 +108,11 @@ export default class getAllPoses extends Component<
       <div
       // className={this.classes.root}>
       >
-        <h2>All My Poses</h2>
+        <div>
+          <br></br>
+          <h2 id="allposes">All My Poses</h2>
+          <br></br>
+        </div>
         <ViewPose
           sessionToken={this.props.sessionToken}
           poses={this.state.poses}
