@@ -7,6 +7,11 @@
   pointer-events: none;
 }
 
+body {
+  background-color: #fffbed;
+  background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -40,3 +45,38 @@
 button {
   font-size: calc(10px + 2vmin);
 }
+
+#toolbg {
+  background-color: lightgray;
+}
+
+#allposes {
+  padding-top: 10 rem;
+  margin-bottom: 3 rem;
+}
+
+#Title {
+  /* color: darkgray; */
+  margin-top: 2.5rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  color: #ba000d;
+}
+
+#TitleAlt {
+  /* color: darkgray; */
+  margin-top: -1.5rem;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 3.5rem;
+  color: #ba000d;
+}
+
+#card {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+#cpadding {
+  padding: 0.5rem;
+}
+/* body {background-color: hotpink;} */
